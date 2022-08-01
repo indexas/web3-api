@@ -1,0 +1,7 @@
+node_modules/
+mongo-volume/
+dist/
+logs/
+.env*
+yarn-error.log
+.DS_STORE

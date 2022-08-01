@@ -1,0 +1,71 @@
+{
+    "extends": [
+      "airbnb-base",
+      "airbnb-typescript/base"
+    ],
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "parserOptions": {
+      "project": "./tsconfig.json",
+      "createDefaultProgram": true
+    },
+    "plugins": [
+      "prettier",
+      "@typescript-eslint",
+      "unused-imports"
+    ],
+    "rules": {
+      // EsLint Rules
+      "class-methods-use-this": "off",
+      "no-underscore-dangle": "off",
+      "no-plusplus": "off",
+      "no-unused-vars": "off",
+      "prefer-destructuring": "warn",
+      "import/no-useless-path-segments": "off",
+      "unused-imports/no-unused-imports": "error",
+      "unused-imports/no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "varsIgnorePattern": "^_",
+          "args": "after-used",
+          "argsIgnorePattern": "^_"
+        }
+      ],
+      "quotes": ["error", "double", { "allowTemplateLiterals": true }],
+      "indent": [2, "tab", { "SwitchCase": 1 }],
+      "no-tabs": "off",
+      "max-classes-per-file": "off",
+      "radix": 0,
+      "max-len": [
+        "error",
+        {
+          "code": 150,
+          "comments": 250,
+          "ignoreStrings": true,
+          "ignoreTrailingComments": true
+        }
+      ],
+      "consistent-return": "off",
+      "no-restricted-properties": "off",
+      "operator-linebreak": ["error", "after"],
+      "no-use-before-define": "off",
+      "no-mixed-spaces-and-tabs": "off",
+      "no-param-reassign": "off",
+      "no-nested-ternary": "warn",
+      "import/prefer-default-export": "off",
+      // Typescript Rules
+      "@typescript-eslint/no-unused-vars": [
+        "off",
+        { "varsIgnorePattern": "^_", "argsIgnorePattern": "^_" }
+      ],
+      "@typescript-eslint/quotes": "off",
+      "@typescript-eslint/return-await": "off",
+      "@typescript-eslint/indent": "off",
+      "@typescript-eslint/no-use-before-define": "off",
+      "@typescript-eslint/no-unused-expressions": "off",
+      "@typescript-eslint/lines-between-class-members": "off"
+    }
+  }

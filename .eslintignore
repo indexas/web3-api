@@ -1,0 +1,7 @@
+/dist
+/node_modules
+/prisma
+/logs
+*.test.*
+.vscode
+*.js
