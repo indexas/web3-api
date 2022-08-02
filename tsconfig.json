@@ -4,7 +4,7 @@
         "outDir": "dist",
         "target": "ES2018",
         "module": "commonjs",
-        "strict": true,
+        "strict": false,
         "lib": [
             "esnext"
         ],
