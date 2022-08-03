@@ -4,6 +4,7 @@ const appConfig = {
 	appPort: parseInt(process.env.APP_PORT!),
 	dbUrl: process.env.DATABASE_URL,
 	elasticUrl: process.env.ELASTIC_URL,
+	redisUrl: process.env.REDIS_URL,
 };
 
 export default appConfig;

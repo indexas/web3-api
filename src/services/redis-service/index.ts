@@ -1,9 +1,12 @@
 import { createClient, RedisClientType } from "redis";
+import appConfig from "../../config";
 
 class RedisService {
 	private readonly client: RedisClientType;
 	constructor() {
-		this.client = createClient();
+		this.client = createClient({
+			url: appConfig.redisUrl,
+		});
 		this.client.on("error", (err) => console.log("Redis Client Error", err));
 	}
 
