@@ -1,5 +1,6 @@
 import { Server } from "http";
 import { Server as SocketServer } from "socket.io";
+import appConfig from "../../config";
 import { LinkContentResult } from "../../models/entity";
 import authService from "../auth-service";
 import redisService from "../redis-service";
@@ -10,7 +11,7 @@ class SocketService {
 	public init(server: Server) {
 		this.io = new SocketServer(server, {
 			cors: {
-				origin: "http://localhost:3000",
+				origin: appConfig.appUrl,
 				methods: ["GET", "POST"],
 			},
 		});
