@@ -1,6 +1,6 @@
 import express from "express";
 import {
-	cloneIndex, deleteIndex, getIndex, postIndex, searchIndexes,
+	cloneIndex, deleteIndex, getIndex, postIndex, searchIndexes, putIndex,
 } from "../../controllers/indexes";
 
 import { checkAuthMw, getAuthMw } from "../../middlewares/check-auth";
@@ -32,6 +32,13 @@ indexesRouter.post(
 	checkAuthMw,
 	checkValidationMw(VALIDATION_SCHEMA.indexes.postIndexSchema),
 	postIndex,
+);
+
+indexesRouter.put(
+	"/",
+	checkAuthMw,
+	checkValidationMw(VALIDATION_SCHEMA.indexes.postIndexSchema),
+	putIndex,
 );
 
 indexesRouter.delete(

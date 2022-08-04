@@ -88,7 +88,7 @@ class ElasticService {
 		}
 	}
 
-	async patchIndex(doc: Indexes) {
+	async putIndex(doc: Indexes) {
 		await client.update({
 			index: IND_NAME,
 			id: doc.streamId,
