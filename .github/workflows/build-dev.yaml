@@ -1,4 +1,4 @@
-name: deploy via ssh
+name: deploy
 on:
   push:
     branches: dev
@@ -6,6 +6,13 @@ jobs:
   main:
     runs-on: ubuntu-latest
     steps:
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v2.0
+        with:
+          version: 'v1.23.6' # default is latest stable
+        id: install       
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
@@ -15,6 +22,13 @@ jobs:
       - name: Login to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v1
+
+      - run: |-
+          aws eks --region us-east-1 update-kubeconfig --name indeas
+
+      - name: Check k8s connection
+        run: kubectl get pods   
+
       - name: Store build time
         id: build-time
         shell: bash
@@ -37,10 +51,5 @@ jobs:
           docker tag $DOCKER_TAG $DOCKER_REGISTRY/indexas/web3-api:latest
           docker push $DOCKER_REGISTRY/indexas/web3-api:latest 
       - name: Deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.SSH_HOST }}
-          username: ${{ secrets.SSH_USERNAME }}
-          key: ${{ secrets.SSH_KEY }}
-          port: ${{ secrets.SSH_PORT }}
-          script: "kubectl set image deployment/web3-api web3-api=814699976359.dkr.ecr.eu-central-1.amazonaws.com/indexas/web3-api:${{ steps.build-time.outputs.time }} --namespace dev"            
+      - run: |-
+          kubectl set image deployment/web3-api web3-api=814699976359.dkr.ecr.eu-central-1.amazonaws.com/indexas/web3-api:${{ steps.build-time.outputs.time }} --namespace testnet
