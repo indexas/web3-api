@@ -51,5 +51,5 @@ jobs:
           docker tag $DOCKER_TAG $DOCKER_REGISTRY/indexas/web3-api:latest
           docker push $DOCKER_REGISTRY/indexas/web3-api:latest 
       - name: Deploy
-      - run: |-
+        run: |-
           kubectl set image deployment/web3-api web3-api=814699976359.dkr.ecr.eu-central-1.amazonaws.com/indexas/web3-api:${{ steps.build-time.outputs.time }} --namespace testnet
