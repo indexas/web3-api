@@ -24,7 +24,7 @@ jobs:
         uses: aws-actions/amazon-ecr-login@v1
 
       - run: |-
-          aws eks --region us-east-1 update-kubeconfig --name indeas
+          aws eks --region us-east-1 update-kubeconfig --name indexas
 
       - name: Check k8s connection
         run: kubectl get pods   
