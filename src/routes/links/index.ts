@@ -8,7 +8,7 @@ import {
 } from "../../controllers/links";
 import { checkValidationMw } from "../../middlewares/check-validation";
 import VALIDATION_SCHEMA from "../../utils/validations";
-import { checkAuthMw } from "../../middlewares/check-auth";
+import { checkAuthMw, getAuthMw } from "../../middlewares/check-auth";
 
 // All routes are private guard is in top router
 
@@ -23,7 +23,7 @@ linksRouter.get(
 
 linksRouter.post(
 	"/search",
-	checkAuthMw,
+	getAuthMw,
 	checkValidationMw(VALIDATION_SCHEMA.links.searchLinkSchema),
 	search,
 );
