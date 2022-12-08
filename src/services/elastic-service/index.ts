@@ -88,7 +88,7 @@ class ElasticService {
 		}
 	}
 
-	async patchIndex(doc: Indexes) {
+	async putIndex(doc: Indexes) {
 		await client.update({
 			index: IND_NAME,
 			id: doc.streamId,
@@ -191,7 +191,7 @@ class ElasticService {
 			if (l.highlight["links.content"]) {
 				l._source.content = l.highlight["links.content"]
 					.join("... ")
-					.replace(/(\r\n|\n|\r|\\n)/gm, "");
+					.replace(/(\r\n|\n|\r|\\n|<br>|<br \/>|<a>|<\/a>)/gm, "");
 			}
 
 			if (l.highlight["links.title"]) {

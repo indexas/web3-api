@@ -67,3 +67,17 @@ export const cloneIndex = async (
 
 	return sendResponse(res, result);
 };
+
+/** Clone Index */
+export const putIndex = async (
+	req: ApiRequestWithAddress<IndexesRequestBody>,
+	res: ApiResponse<IndexResponse>,
+) => {
+	const body = clearBody(req);
+
+	body.address = req.address!;
+
+	const result = await indexService.put(body);
+
+	return sendResponse(res, result);
+};

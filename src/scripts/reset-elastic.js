@@ -88,6 +88,7 @@ async function main() {
               searchable: {
                 tokenizer: 'standard',
                 filter: ['lowercase', 'custom_ascii_folding'],
+                char_filter: ['html_strip']
               },
             },
             filter: {

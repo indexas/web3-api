@@ -66,6 +66,22 @@ class IndexService {
 		}
 	}
 
+	public async put(data: IndexesRequestBody): Promise<ServiceResponse<IndexResponse>> {
+		try {
+			await mongoService.updateIndex(data);
+			await esService.putIndex(data);
+			return {
+				success: true,
+				data,
+			};
+		} catch (err) {
+			return {
+				success: false,
+				error: ERROR.COMMON.CREATE_ERROR,
+			};
+		}
+	}
+
 	public async clone(address: string, streamId: string): Promise<ServiceResponse> {
 		try {
 			// TODO: Clone verisi ceramicten mi çekilecek yoksa elastic tenmi
